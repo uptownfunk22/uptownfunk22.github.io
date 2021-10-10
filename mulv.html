@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <style>
+    * {
+   box-sizing: border-box;
+}
+ body {
+   background: #079f91;
+   font-family: 'Hind', sans-serif;
+}
+ h1 {
+   text-align: center;
+   text-transform: uppercase;
+   color: #436b68;
+   padding: 10px;
+   margin: 0;
+}
+ .slider-multimedia {
+   width: 80%;
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 0;
+   background: #f9f9f9;
+   border-radius: 5px;
+}
+ .slider-multimedia .slick-slide {
+   list-style-type: none;
+   padding: 20px;
+}
+ .multi-wrap {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-flex-wrap: wrap;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   -webkit-box-pack: justify;
+   -webkit-justify-content: space-between;
+   -ms-flex-pack: justify;
+   justify-content: space-between;
+}
+ .vid-wrap {
+   width: 49%;
+   display: inline-block;
+   padding-bottom: 20px;
+}
+ .vid-wrap video {
+   width: 100%;
+}
+ .audio-wrap {
+   width: 100%;
+}
+ .audio-wrap audio {
+   width: 100%;
+}
+ .numberedPaging {
+   padding: 20px 0;
+}
+ .numberedPaging > li {
+   display: none;
+   text-align: center;
+}
+ .numberedPaging .slick-active {
+   display: block;
+}
+ .slick-next:before, .slick-prev:before {
+   font-size: 25px;
+   color: #079f91;
+}
+ .slick-next, .slick-prev {
+   top: auto;
+   bottom: 16px;
+}
+ .slick-next {
+   right: 25px;
+}
+ .slick-prev {
+   left: 25px;
+}
+ 
+  </style>
+  
+</head>
+
+<body>
+<!-- using slick carousel https://kenwheeler.github.io/slick/ -->
+<link href="https://fonts.googleapis.com/css?family=Hind:700" rel="stylesheet">
+
+<ul class="slider-multimedia">
+  <li>
+    <h1>Reasons why u r special LOL!</h1>
+    <div class="multi-wrap">
+      <div class="vid-wrap">
+        <video src="smile.mp4" controls></video>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="vid-wrap">
+        <video src="cig.mp4" controls></video>
+      </div>
+       <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="vid-wrap">
+        <video src="lon.mp4" controls></video>
+      </div>
+      <div class="vid-wrap">
+        <video src="aah.mp4" controls></video>
+      </div>
+    </div>
+
+  </li>
+</ul>
+<script>
+  $("body").on('click', pauseAll);
+
+$('.slider-multimedia').slick({
+  arrows: true,
+  dots: true,
+  dotsClass: 'numberedPaging',
+  customPaging: function(slider, i) {
+    console.log(slider);
+    return (i + 1) + ' of ' + slider.slideCount;
+  },
+  adaptiveHeight: true
+});
+
+function pauseAll() {
+  $('video, audio').each(function() {
+    $(this).get(0).pause();
+  });
+}
+
+/* On click of fullscreen, pause all other multimedia */
+$('video').bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+  var thisVideo = $(this);
+  var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+  var event = state ? 'FullscreenOn' : 'FullscreenOff';
+
+  console.log(thisVideo);
+  pauseAll();
+  thisVideo.get(0).play();
+});
+</script>
+</body>
+</html>
